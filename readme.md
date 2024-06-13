@@ -2,19 +2,23 @@
 
 NeoDB Client for Go is a client library for interacting with the [neodb.social](https://neodb.social) API. It provides a set of methods for searching entries and retrieving details about books, movies, TV shows, and more.
 
+**Only implemented the following endpoints:**
+- Search entries
+- Get book details
+
 ## Features
 
 - Search entries
 - Get book details
-- Get movie details
-- Get TV show details
-- Get TV season details
-- Get TV episode details
-- Get podcast details
-- Get album details
-- Get game details
-- Get performance details
-- Get performance production details
+- Get movie details(not fully implemented)
+- Get TV show details(not fully implemented)
+- Get TV season details(not fully implemented)
+- Get TV episode details(not fully implemented)
+- Get podcast details(not fully implemented)
+- Get album details(not fully implemented)
+- Get game details(not fully implemented)
+- Get performance details(not fully implemented)
+- Get performance production details(not fully implemented)
 
 ## Installation
 
@@ -119,6 +123,9 @@ log.Fatalf("Error getting movie details: %v", err)
 }
 fmt.Printf("Movie details: %+v\n", movie)
 ```
+## Schema Documentation
+For detailed information about the schemas used in this project, please refer to the Schema Documentation.
+
 
 ## Future Plans
 
