@@ -27,9 +27,6 @@ func (c *NeoDBClient) executeRequest(endpoint string, result interface{}) error 
 	request := c.client.R().
 		SetHeader("Accept", "application/json")
 
-	// TODO: 添加授权头部，使用 access_token
-	// request.SetAuthToken(c.accessToken)
-
 	// 打印调试信息
 	url := fmt.Sprintf("%s%s", c.apiBaseURL, endpoint)
 	log.Printf("Sending request to URL: %s", url)
@@ -43,10 +40,20 @@ func (c *NeoDBClient) executeRequest(endpoint string, result interface{}) error 
 		return fmt.Errorf("failed to execute request: status code %d", resp.StatusCode())
 	}
 
+	// 打印原始响应的调试信息
+	log.Printf("Raw response: %s\n", resp.String())
+
 	err = json.Unmarshal(resp.Body(), result)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal response: %v", err)
 	}
+
+	// 打印解析后的响应调试信息
+	responseBody, err := json.MarshalIndent(result, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to format response body: %v", err)
+	}
+	log.Printf("Parsed response body: %s\n", responseBody)
 
 	return nil
 }
